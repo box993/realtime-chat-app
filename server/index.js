@@ -71,6 +71,9 @@ class ChatApp {
       // Receive a new message from a client
       socket.on('send-message', async (data) => {
         const { message, senderId, chatId } = data;
+        if (!chatId || !message || !senderId) {
+          return;
+        }
         console.log(
           `Message received from ${senderId} to ${chatId}: ${message}`
         );
